@@ -13,7 +13,7 @@ app = Flask(__name__)
 def home():
 	return render_template('index.html')
 
-@app.route('/predict', methods=['POST'])
+@app.route('/predict', methods=['GET','POST'])
 def predict():
     temp_array = list()
     
@@ -69,6 +69,7 @@ def predict():
         my_prediction = int(regressor.predict(data)[0])
               
         return render_template('result.html', lower_limit = my_prediction-10, upper_limit = my_prediction+5)
+    return render_template('result.html')
 
 
 
