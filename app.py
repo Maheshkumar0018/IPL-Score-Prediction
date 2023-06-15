@@ -18,9 +18,15 @@ def predict():
     temp_array = list()
     
     if request.method == 'POST':
-        
+
         batting_team = request.form['batting-team']
-        if batting_team == 'Chennai Super Kings':
+        bowling_team = request.form['bowling-team']
+        
+        if batting_team == bowling_team:
+            print("please select different teams")
+            message='Please select different teams.'
+            return render_template('result.html',message=message)
+        elif batting_team == 'Chennai Super Kings':
             temp_array = temp_array + [1,0,0,0,0,0,0,0]
         elif batting_team == 'Delhi Daredevils':
             temp_array = temp_array + [0,1,0,0,0,0,0,0]
@@ -38,7 +44,7 @@ def predict():
             temp_array = temp_array + [0,0,0,0,0,0,0,1]
             
             
-        bowling_team = request.form['bowling-team']
+        #bowling_team = request.form['bowling-team']
         if bowling_team == 'Chennai Super Kings':
             temp_array = temp_array + [1,0,0,0,0,0,0,0]
         elif bowling_team == 'Delhi Daredevils':
