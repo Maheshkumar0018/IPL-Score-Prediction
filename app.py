@@ -24,8 +24,8 @@ def predict():
         
         if batting_team == bowling_team:
             print("please select different teams")
-            message='Please select different teams.'
-            return render_template('result.html',message=message)
+            error_mesg = 'Batting and Bowling both are same, pleade select different teams.' 
+            return render_template('result.html',error_mesg=error_mesg)
         elif batting_team == 'Chennai Super Kings':
             temp_array = temp_array + [1,0,0,0,0,0,0,0]
         elif batting_team == 'Delhi Daredevils':
@@ -72,8 +72,7 @@ def predict():
         temp_array = temp_array + [overs, runs, wickets, runs_in_prev_5, wickets_in_prev_5]
         
         data = np.array([temp_array])
-        my_prediction = int(regressor.predict(data)[0])
-              
+        my_prediction = int(regressor.predict(data)[0])     
         return render_template('result.html', lower_limit = my_prediction-10, upper_limit = my_prediction+5)
     return render_template('result.html')
 

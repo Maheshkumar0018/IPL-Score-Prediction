@@ -70,8 +70,11 @@
 			<!-- Result -->
             
 			<div class="results">
-				<p class='result-p'>The final predicted score (range): {{ lower_limit }} to {{ upper_limit }}</p>
-                <pclass='result-p'>{{ message }}</p>
+			{% if error_mesg %}
+                <p class='result-p'>{{ error_mesg }}</p>
+            {% else %}
+                <p class='result-p'>The final predicted score (range): {{ lower_limit }} to {{ upper_limit }}</p>
+            {% endif %}
 			</div>
 
             <!-- IPL Banner - 2 -->
